@@ -1,0 +1,54 @@
+# Ignore virtual environment
+myenv/
+venv/
+.venv/
+env/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ignore archive and old files
+archive/
+*.log
+*.csv
+!requirements.txt
+
+# Ignore test files (not needed in production)
+test_*.py
+
+# Ignore training scripts (not needed in production)
+train_*.py
+add_examples_*.py
+label_with_llm.py
+
+# Ignore IDE and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore documentation (optional, not needed for API)
+*.md
+!README.md
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore external data
+external_data/
+llm_augmented/
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore frontend
+frontend.html
+
+# Ignore shell scripts
+*.sh
