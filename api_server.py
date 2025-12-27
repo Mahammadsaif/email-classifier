@@ -80,7 +80,7 @@ def home():
         'name': 'Email Classification API',
         'version': '2.0.0',
         'model': 'Hierarchical SVM (Stage 1: JUNK Filter, Stage 2: Intent)',
-        'classes': ['HOT', 'WARM', 'COLD', 'SPAM', 'ABUSE', 'NEEDS_REVIEW'],
+        'classes': ['HOT', 'WARM', 'COLD', 'SPAM', 'ABUSE'],
         'status': 'healthy',
         'timestamp': datetime.utcnow().isoformat(),
         'endpoints': {
@@ -115,7 +115,7 @@ def classify():
     
     Response:
         {
-            "label": "HOT|WARM|COLD|SPAM|ABUSE|NEEDS_REVIEW",
+            "label": "HOT|WARM|COLD|SPAM|ABUSE",
             "confidence": 85.5,
             "action": "Recommended action",
             "needs_review": false
