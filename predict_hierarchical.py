@@ -13,7 +13,7 @@ import os
 import numpy as np
 
 # Configuration
-CONFIDENCE_THRESHOLD = 0.70  # 70% threshold
+CONFIDENCE_THRESHOLD = 0.0  # No threshold - always classify into one of 5 categories
 MODEL_DIR = os.path.join(os.path.dirname(__file__), 'models')
 
 # Load models lazily
