@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classifier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .result-item {
+            margin-bottom: 12px;
+        }
+
+        .result-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .result-value {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .label-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .label-HOT {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .label-WARM {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+
+        .label-COLD {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .label-SPAM {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .label-ABUSE {
+            background: #fae8ff;
+            color: #a21caf;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Email Classifier</h1>
+        <p class="subtitle">AI-powered email classification (HOT/WARM/COLD/SPAM/ABUSE)</p>
+
+        <form id="emailForm">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Enter email subject...">
+
+            <label for="body">Email Body</label>
+            <textarea id="body" placeholder="Enter email content..."></textarea>
+
+            <button type="submit">Classify Email</button>
+        </form>
+
+        <div class="loading" id="loading">
+            ⏳ Classifying email...
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="result" id="result">
+            <h3>Classification Result</h3>
+            
+            <div class="result-item">
+                <div class="result-label">Label</div>
+                <div class="result-value">
+                    <span class="label-badge" id="labelBadge"></span>
+                </div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Confidence</div>
+                <div class="result-value" id="confidence"></div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Recommended Action</div>
+                <div class="result-value" id="action"></div>
+            </div>
+
+            <div class="result-item">
+                <div class="result-label">Classification Stage</div>
+                <div class="result-value" id="stage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://email-classifier-4353.onrender.com';
+        const API_KEY = 'sk-emailclassifier-2024-prod';
+
+        const form = document.getElementById('emailForm');
+        const subjectInput = document.getElementById('subject');
+        const bodyInput = document.getElementById('body');
+        const resultDiv = document.getElementById('result');
+        const errorDiv = document.getElementById('error');
+        const loadingDiv = document.getElementById('loading');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const subject = subjectInput.value.trim();
+            const body = bodyInput.value.trim();
+
+            if (!subject && !body) {
+                showError('Please enter at least a subject or body');
+                return;
+            }
+
+            // Hide previous results
+            resultDiv.classList.remove('show');
+            errorDiv.classList.remove('show');
+            loadingDiv.classList.add('show');
+
+            try {
+                const response = await fetch(`${API_URL}/classify`, {
+                    method: 'POST',
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ subject, body })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                showError(error.message || 'Failed to classify email. Please try again.');
+            } finally {
+                loadingDiv.classList.remove('show');
+            }
+        });
+
+        function displayResult(data) {
+            const labelBadge = document.getElementById('labelBadge');
+            labelBadge.textContent = data.label;
+            labelBadge.className = `label-badge label-${data.label}`;
+
+            document.getElementById('confidence').textContent = `${data.confidence}%`;
+            document.getElementById('action').textContent = data.action;
+            document.getElementById('stage').textContent = data.stage.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+            resultDiv.classList.add('show');
+        }
+
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>
