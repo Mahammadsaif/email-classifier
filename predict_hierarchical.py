@@ -18,10 +18,20 @@ MODEL_DIR = os.path.join(os.path.dirname(__file__), 'models')
 
 # Load models lazily
 _models = {}
+_model_mtime = 0
 
 def _load_models():
-    """Load all 3-stage models."""
-    if not _models:
+    """Load all 3-stage models. Automatically reloads if model files changed."""
+    global _model_mtime
+    
+    # Check if models have been updated
+    abuse_path = os.path.join(MODEL_DIR, 'abuse_detector.joblib')
+    current_mtime = os.path.getmtime(abuse_path) if os.path.exists(abuse_path) else 0
+    
+    if not _models or current_mtime > _model_mtime:
+        _models.clear()
+        _model_mtime = current_mtime
+        
         # Stage 1: ABUSE detector
         _models['abuse_model'] = joblib.load(os.path.join(MODEL_DIR, 'abuse_detector.joblib'))
         _models['abuse_tfidf'] = joblib.load(os.path.join(MODEL_DIR, 'abuse_tfidf.joblib'))
