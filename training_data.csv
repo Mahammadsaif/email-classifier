@@ -4918,14 +4918,83 @@ Subscription,Your subscription payment failed. Click here to update,SPAM
 ,Thanks for getting back to us and yes this is my mobile,HOT
 ,"Thanks for getting back, yes this is my number",HOT
 ,"Yes this is my mobile number, thanks for reaching back",HOT
-,"Thanks for following up, this is my cell",HOT
-,"Yes that's my number, thanks for getting back",HOT
-,"Thanks for the follow up, yes this is my mobile number",HOT
-,My boss has asked me to get some more information,WARM
-,My manager asked me to look into this,WARM
-,My boss wants me to get more details,WARM
-,Our director asked me to reach out for more info,WARM
-,My supervisor asked me to follow up on this,WARM
-,The boss asked me to get pricing information,WARM
-,My manager wants more details about your services,WARM
-,I've been asked by management to gather more information,WARM
+general test failures,Please confirm our order for 500 seats. Payment will be wired today.,HOT
+general test failures,Can we schedule a call to discuss your solution?,WARM
+general test failures,Doing competitive analysis. Can you share how you compare to others in pricing and features?,COLD
+edge brutal v2,"Hi Lisa, I hope you're doing well. I've been pondering the importance of workplace innovation and employee engagement. Your insights on this would be valuable. If you're interested in exploring this topic, I'd love to arrange a discussion. Let me know your thoughts. Best regards, Michael",WARM
+edge brutal v2,I love your solution and we're ready to move forward today. Only issue is your price of $15K is above our budget of $10K. If you can meet us at $10K we'll sign immediately. Any flexibility?,WARM
+edge brutal v2,We want to proceed but our CFO thinks the payment terms are too aggressive. She wants to negotiate before approving. Can we set up a call with her to discuss modified terms?,WARM
+edge brutal v2,"Hi Sarah, I hope this message finds you well. I've been thinking about workplace productivity lately and how teams can collaborate more effectively. Your perspective on this would be interesting. If you have time, perhaps we could exchange some ideas. Let me know what you think. Best regards, John",WARM
+edge brutal v2,This is absolutely unacceptable. I've been waiting 3 weeks for a response to my support ticket. Your customer service is terrible and I'm extremely frustrated. I want a refund immediately. This is the worst experience I've ever had with a vendor.,COLD
+edge brutal v2,"Well, I guess I shouldn't be surprised by your lack of response. Typical of companies like yours. I'll just take my business elsewhere and make sure everyone knows about this experience. Thanks for nothing.",COLD
+near closing patterns,We're 98% there. Legal just needs to sign off on one minor clause. This is really just a formality at this point. Can you prepare the onboarding materials?,HOT
+near closing patterns,Almost done! Just waiting on legal to rubber-stamp the final clause. Everything else is approved. When can we start implementation?,HOT
+near closing patterns,"We're basically ready to go. Just a formality with legal review on data clause, should be wrapped up by end of week. Send the kickoff schedule.",HOT
+finance approval pending,I really like this proposal but I need to get finance approval first. They haven't reviewed it yet. I'll present next week.,WARM
+finance approval pending,This looks good but needs to go through our finance committee. I don't anticipate issues but can't commit until they approve.,WARM
+price conditional,"I love this and we want it, but your price is above budget. If you can work with us on pricing, we're ready to sign.",WARM
+price conditional,We're interested but need to negotiate on price. The K is higher than expected. Any room for flexibility?,WARM
+price conditional,Great solution but we need to discuss pricing. Can we find a middle ground on cost?,WARM
+competitor comparison,We like your platform but competitor just offered us a big discount. We need to compare options before deciding.,WARM
+competitor comparison,You're our top choice but we have another vendor offering 50% off. Can you match that?,WARM
+pilot requests,"Instead of full deployment, can we start with a pilot for 10 users? Want to test before company-wide rollout.",WARM
+pilot requests,Can we do a proof of concept first? We want to validate before full purchase.,WARM
+reconsideration,"We had issues with you before but heard you've improved. If you can show better service, we might reconsider.",WARM
+reconsideration,"Your demo was rushed last time. If you can provide better support this time, we're open to trying again.",WARM
+payment terms,We want to move forward but CFO wants different payment terms. Can we discuss installment options?,WARM
+payment terms,Our CFO thinks the payment schedule is too aggressive. Need to negotiate terms before approval.,WARM
+hot with action,I'm definitely interested in team development strategies. Let's schedule time to discuss collaboration. This is a priority for me.,HOT
+hot with action,I appreciate this about team strategies. I'm ready to discuss how we can work together. Let's find time this week.,HOT
+frustrated cold,This is unacceptable. Been waiting 3 weeks for support. Your service is terrible. I want my money back immediately.,COLD
+frustrated cold,Worst experience ever. Your customer service is horrible. I'm extremely frustrated. Just give me a refund.,COLD
+frustrated cold,Your support is terrible. I've been waiting weeks. This is ridiculous. I want out and I want my money back.,COLD
+polite reject packed,Thanks for reaching out. My schedule is very packed for the next month. This sounds somewhat interesting but I don't have time right now.,COLD
+polite reject packed,I appreciate the outreach but I'm completely booked for the foreseeable future. Maybe revisit later in the year.,COLD
+spam professional,"Hello David, I've been exploring best practices in customer engagement recently. Your experience would provide valuable insights. Perhaps we could arrange a brief conversation?",SPAM
+spam professional,"Hi there, I've been thinking about customer success strategies. Would love to learn from your perspective on this. Open to connecting?",SPAM
+sarcastic reject,"Well, I guess I shouldn't be surprised by your lack of response. Typical. I'll take my business elsewhere. Thanks for nothing.",COLD
+sarcastic reject,Should've known better than to expect a response. Par for the course with companies like yours. I'm done here.,COLD
+info extraction,"Doing competitive analysis for our team. Can you share detailed pricing, features, and how you compare to competitors?",COLD
+info extraction,We're evaluating the market. Need your pricing breakdown and competitive differentiators for our analysis.,COLD
+warm not hot,I love your solution and we're ready to move forward today. Only issue is your price of $15K is above our budget of $10K. If you can meet us at $10K we'll sign immediately. Any flexibility?,WARM
+warm not hot,We were going to go with you but competitor just offered us 50% off for a 2-year contract. We really like your platform more but can't ignore that pricing difference. Can you match or beat their offer?,WARM
+warm not hot,"I think this could work for us. However, instead of a full implementation, can we start with a small pilot program for 10 users? If that goes well, we'll expand to the full team of 100.",WARM
+warm not hot,"I'm extremely disappointed with how our previous interaction went. Your response time was terrible and the demo was rushed. That said, we still need a solution in this space. If you can guarantee better service, I'm willing to reconsider. Can you?",WARM
+warm not hot,We want to proceed but our CFO thinks the payment terms are too aggressive. She wants to negotiate before approving. Can we set up a call with her to discuss modified terms?,WARM
+hot almost done,We're 95% there. Just need legal to review one clause in the contract about data ownership. Should be resolved by end of week. Can you send the onboarding checklist so we can prepare?,HOT
+warm finance pending,Thanks for the detailed proposal. I need to run this by our finance team for final sign-off but I don't anticipate any issues. Should have an answer by next week.,WARM
+hot commitment,I appreciate your message about team development strategies. I'm definitely interested in this topic. Let's find a time to discuss how we might work together on improving our teams. Looking forward to connecting.,HOT
+cold no time,"Hey Sarah, I appreciate your message but I'm completely booked for the next few months. Let's touch base later in the year. Thanks, Mike",COLD
+cold no capacity,"Hi, I appreciate you reaching out. My schedule is pretty packed for the next month but this does sound somewhat interesting. Can you send me some info I can review when I have time? No rush on my end.",COLD
+warm professional,"Hi Jennifer, I hope you're doing well. I've been considering different approaches to employee engagement lately. Your insights on this topic would be valuable. If you're interested in exploring this further, perhaps we could arrange a discussion sometime. Let me know what works for you. Best regards, Thomas",WARM
+warm professional,"Hi Sarah, I hope this message finds you well. I've been thinking about workplace productivity lately and how teams can collaborate more effectively. Your perspective on this would be interesting. If you have time, perhaps we could exchange some ideas. Let me know what you think. Best regards, John",WARM
+warm professional,"Hi Lisa, I hope you're doing well. I've been pondering the importance of workplace innovation and employee engagement. Your insights on this would be valuable. If you're interested in exploring this topic, I'd love to arrange a discussion. Let me know your thoughts. Best regards, Michael",WARM
+spam generic,"Hello David, I hope this finds you well. I've been exploring best practices in customer engagement and thought your experience would provide valuable insights. If you're open to it, I'd appreciate the opportunity to learn from your perspective on this topic. Perhaps we could arrange a brief conversation? Let me know what works for you. Warm regards, Sarah",SPAM
+cold frustrated,This is absolutely unacceptable. I've been waiting 3 weeks for a response to my support ticket. Your customer service is terrible and I'm extremely frustrated. I want a refund immediately. This is the worst experience I've ever had with a vendor.,COLD
+cold sarcastic,"Well, I guess I shouldn't be surprised by your lack of response. Typical of companies like yours. I'll just take my business elsewhere and make sure everyone knows about this experience. Thanks for nothing.",COLD
+edge final,Thanks for the detailed proposal. I need to run this by our finance team for final sign-off but I don't anticipate any issues. Should have an answer by next week.,WARM
+edge final,"I tried your product last year and had a terrible experience with bugs and poor support. However, I heard you've improved. Has your platform actually gotten better? I'm willing to give you another shot if things have changed.",WARM
+edge final,We want to proceed but our CFO thinks the payment terms are too aggressive. She wants to negotiate before approving. Can we set up a call with her to discuss modified terms?,WARM
+edge final,"Hi Sarah, I hope this message finds you well. I've been thinking about workplace productivity lately and how teams can collaborate more effectively. Your perspective on this would be interesting. If you have time, perhaps we could exchange some ideas. Let me know what you think. Best regards, John",WARM
+edge final,"Well, I guess I shouldn't be surprised by your lack of response. Typical of companies like yours. I'll just take my business elsewhere and make sure everyone knows about this experience. Thanks for nothing.",COLD
+warm finance variations,I love the proposal but need finance approval before I can commit. I'll present it next week and get back to you.,WARM
+warm finance variations,This looks promising but requires our finance team's sign-off. I should hear back by next week.,WARM
+warm reconsider variations,"We had a bad experience before but we're hearing you've improved support. If you can show improvement, we might try again.",WARM
+warm reconsider variations,Last time was disappointing but we still need this type of solution. Can you guarantee better service this time?,WARM
+warm payment variations,We're interested but our CFO needs to approve the payment terms first. Can we discuss installments?,WARM
+warm payment variations,Want to proceed but CFO thinks upfront payment is too much. Need to work out payment schedule.,WARM
+warm workplace talk,"Hi there, been thinking about team collaboration strategies. Your perspective would be interesting. Perhaps we could exchange ideas sometime?",WARM
+warm workplace talk,"Hello, I've been considering productivity improvements. Would love to hear your thoughts. Maybe we could discuss?",WARM
+cold dismissive variations,Not surprised by lack of response. Typical. Taking my business elsewhere. Thanks for wasting my time.,COLD
+cold dismissive variations,Should've known better. Just like every other company. I'm done. Going to competitors.,COLD
+cold dismissive variations,Figures. No response as usual. I'll go somewhere that actually cares. Goodbye.,COLD
+hot formality,Thanks for the quote. It's in our budget range. I need to get final sign-off from our CFO but that should just be a formality. Can we schedule the contract review for next week?,HOT
+hot formality,The quote looks good and is in budget. CFO sign-off is just a formality at this point. Let's schedule the contract review for next week.,HOT
+hot formality,"Budget approved, just need CEO rubber stamp which is a formality. When can we do contract review?",HOT
+warm personalized,"Hi Lisa, I hope you're doing well. I've been pondering the importance of workplace innovation and employee engagement. Your insights on this would be valuable. If you're interested in exploring this topic, I'd love to arrange a discussion. Let me know your thoughts. Best regards, Michael",WARM
+warm personalized,"Hello Lisa, hope all is well. Been thinking about workplace innovation lately. Your perspective would be really valuable. Would you be open to discussing employee engagement strategies? Best, Michael",WARM
+warm price block,I love your solution and we're ready to move forward today. Only issue is your price of $15K is above our budget of $10K. If you can meet us at $10K we'll sign immediately. Any flexibility?,WARM
+warm price block,"We want this and are ready to go. The only blocker is price - $15K is over our $10K budget. If you can match $10K, we'll sign today. Can you do that?",WARM
+warm price block,"Love the solution, ready to move forward. Just one issue: your pricing is above what we budgeted. Need you to come down to our number to proceed.",WARM
+hot committed,Thanks for the quote. It's within our budget and approved. Let's finalize the contract next week.,HOT
+hot committed,"Quote approved, budget confirmed. Ready to schedule contract signing for next week.",HOT
