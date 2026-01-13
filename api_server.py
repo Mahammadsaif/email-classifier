@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 
 # Import the hierarchical classifier
 from predict_hierarchical import classify_email, classify_batch
+from email_preprocessor import EmailPreprocessor
 
 app = Flask(__name__)
 CORS(app)
@@ -110,7 +111,8 @@ def classify():
     Request body:
         {
             "subject": "Email subject (optional)",
-            "body": "Email body text (required)"
+            "body": "Email body text (required) - can be raw email with headers/signatures",
+            "preprocess": true (optional, default: true)
         }
     
     Response:
@@ -118,7 +120,8 @@ def classify():
             "label": "HOT|WARM|COLD|SPAM|ABUSE",
             "confidence": 85.5,
             "action": "Recommended action",
-            "needs_review": false
+            "needs_review": false,
+            "preprocessing_applied": true
         }
     """
     try:
@@ -129,13 +132,22 @@ def classify():
         
         body = data.get('body', '')
         subject = data.get('subject', '')
+        should_preprocess = data.get('preprocess', True)
         
         if not body and not subject:
             return jsonify({'error': 'Email body or subject required'}), 400
         
+        # Preprocess email if requested (removes headers, signatures, etc.)
+        preprocessing_applied = False
+        if should_preprocess and body:
+            preprocessor = EmailPreprocessor()
+            body = preprocessor.clean_email(body, subject)
+            preprocessing_applied = True
+        
         result = classify_email(body, subject)
         result['client'] = request.client_info['name']
         result['timestamp'] = datetime.now(timezone.utc).isoformat()
+        result['preprocessing_applied'] = preprocessing_applied
         
         return jsonify(result)
     
@@ -157,7 +169,8 @@ def classify_batch_endpoint():
             "emails": [
                 {"subject": "...", "body": "..."},
                 {"subject": "...", "body": "..."}
-            ]
+            ],
+            "preprocess": true (optional, default: true)
         }
     
     Response:
@@ -174,6 +187,7 @@ def classify_batch_endpoint():
             return jsonify({'error': 'emails array required'}), 400
         
         emails = data['emails']
+        should_preprocess = data.get('preprocess', True)
         
         if not isinstance(emails, list):
             return jsonify({'error': 'emails must be an array'}), 400
@@ -181,7 +195,20 @@ def classify_batch_endpoint():
         if len(emails) > 100:
             return jsonify({'error': 'Maximum 100 emails per batch'}), 400
         
-        results = classify_batch(emails)
+        # Preprocess emails if requested
+        preprocessor = EmailPreprocessor() if should_preprocess else None
+        processed_emails = []
+        for email in emails:
+            processed = email.copy()
+            if should_preprocess and email.get('body'):
+                processed['body'] = preprocessor.clean_email(
+                    email['body'], 
+                    email.get('subject', '')
+                )
+                processed['preprocessing_applied'] = True
+            processed_emails.append(processed)
+        
+        results = classify_batch(processed_emails)
         
         # Calculate summary
         summary = {}
